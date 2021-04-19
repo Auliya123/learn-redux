@@ -1,30 +1,37 @@
 import React from "react";
 import CardProduct from "../components/CardProduct";
+import { connect } from "react-redux";
 
-const Products = () => {
-  const [order, setOrder] = React.useState(4);
+const Products = (props) => {
+  // const [order, setOrder] = React.useState(4);
 
-  const handleChange = (newValue) => {
-    console.log("newValue nih", newValue);
+  // const handleChange = (newValue) => {
+  //   console.log("newValue nih", newValue);
 
-    // setCounter(newValue);
-  };
+  //   // setCounter(newValue);
+  // };
 
-  console.log("counter", order);
+  // console.log("counter", order);
 
   return (
     <div style={{ padding: 50 }}>
       <h1>Product List</h1>
-      <p>Jumlah Order: {order}</p>
+      <p>Jumlah Order: {props.order}</p>
       <CardProduct
-        onCounterChange={(value) => {
-          console.log(value);
+      // onCounterChange={(value) => {
+      //   console.log(value);
 
-          setOrder(value);
-        }}
+      //   setOrder(value);
+      // }}
       />
     </div>
   );
 };
 
-export default Products;
+const mapStateToProps = (state) => {
+  return {
+    order: state.totalOrder
+  };
+};
+
+export default connect(mapStateToProps)(Products);
